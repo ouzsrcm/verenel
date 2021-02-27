@@ -42,6 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordStructure\Article.cs" />
+    <Compile Include="RecordStructure\Category.cs" />
+    <Compile Include="RecordStructure\Page.cs" />
+    <Compile Include="RecordStructure\Site.cs" />
+    <Compile Include="RecordStructure\User.cs" />
+    <Compile Include="RecordStructure\UserCredential.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Verenel.Models.Infrastructure\Verenel.Models.Infrastructure.csproj">
@@ -49,8 +55,6 @@
       <Name>Verenel.Models.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RecordStructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

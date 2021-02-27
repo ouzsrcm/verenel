@@ -2,10 +2,10 @@
 
 namespace Verenel.Models.Infrastructure
 {
-    public class BaseModel : IModel<Guid>
+    public class BaseModel<TKey> : IModel<TKey>
     {
-        public Guid SiteId { get; set; }
-        public Guid Id { get; set; }
+        public TKey SiteId { get; set; }
+        public TKey Id { get; set; }
         public int CreateUser { get; set; }
         public DateTime CreateionDate { get; set; }
         public bool? IsDeleted { get; set; }
