@@ -14,8 +14,13 @@ namespace Verenel.Models.Infrastructure
         /// </summary>
         TKey Id { get; set; }
 
-        int CreateUser { get; set; }
-        DateTime CreateionDate { get; set; }
+        int CreateUserId { get; set; }
+        DateTime CreationDate { get; set; }
+
+        int UpdateUserId { get; set; }
+        DateTime UpdateDate { get; set; }
+
+        int DeleteUserId { get; set; }
         bool? IsDeleted { get; set; }
         DateTime? DeletionDate { get; set; }
     }

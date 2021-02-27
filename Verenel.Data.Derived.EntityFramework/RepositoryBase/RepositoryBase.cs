@@ -33,44 +33,64 @@ namespace Verenel.Data.Derived.EntityFramework.RepositoryBase
             queryEntity = dbSet.Where(x => x.IsDeleted == false).AsNoTracking();
         }
 
+        protected void TrackingControl(TEntityModel item)
+        {
+            bool tracking = context.ChangeTracker.Entries<TEntityModel>().Any(x => x.Entity.Id.Equals(item.Id));
+            if (tracking)
+                context.ChangeTracker.Entries<TEntityModel>().FirstOrDefault(x => x.Entity.Id.Equals(item.Id)).State = EntityState.Detached;
+        }
+
         public int Count(Expression<Func<TEntityModel, bool>> model)
         {
-            throw new NotImplementedException();
+            return queryEntity.Count(model);
         }
 
         public bool Delete(TEntityModel model)
         {
-            throw new NotImplementedException();
+            model.IsDeleted = true;
+            TrackingControl(model);
+            dbSet.Attach(model);
+            context.Entry(model).State = EntityState.Modified;
+            context.SaveChanges();
+            return true;
         }
 
         public bool Exists(Expression<Func<TEntityModel, bool>> model)
         {
-            throw new NotImplementedException();
+            return queryEntity.Any(model);
         }
 
         public TEntityModel Get(Expression<Func<TEntityModel, bool>> model)
         {
-            throw new NotImplementedException();
+            return queryEntity.Where(model).FirstOrDefault();
         }
 
         public IQueryable<TEntityModel> GetList()
         {
-            throw new NotImplementedException();
+            return queryEntity.AsNoTracking();
         }
 
         public IQueryable<TEntityModel> GetList(Expression<Func<TEntityModel, bool>> model)
         {
-            throw new NotImplementedException();
+            return queryEntity.Where(model).AsNoTracking();
         }
 
         public TEntityModel Insert(TEntityModel model)
         {
-            throw new NotImplementedException();
+            model.CreationDate = DateTime.Now;
+            var res = dbSet.Add(model);
+            context.SaveChanges();
+            return res;
         }
 
         public TEntityModel Update(TEntityModel model)
         {
-            throw new NotImplementedException();
+            model.UpdateDate = DateTime.Now;
+            TrackingControl(model);
+            dbSet.Attach(model);
+            context.Entry(model).State = EntityState.Modified;
+            context.SaveChanges();
+            return model;
         }
     }
 }
