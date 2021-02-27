@@ -3,7 +3,7 @@ using Verenel.Models.Infrastructure;
 
 namespace Verenel.Models.Derived.Entities.RecordStructure
 {
-    public class UserCredential<TKey> : BaseModel<TKey>, IModel<TKey>
+    public class UserCredential<TKey> : BaseModel<TKey>, IEntityModel<TKey>
     {
         public TKey UserId { get; set; }
         public string Username { get; set; }

@@ -3,7 +3,7 @@ using Verenel.Models.Infrastructure;
 
 namespace Verenel.Models.Derived.Entities.RecordStructure
 {
-    public class Page<TKey> : BaseModel<TKey>, IModel<TKey>
+    public class Page<TKey> : BaseModel<TKey>, IEntityModel<TKey>
     {
         public string Title { get; set; }
         public string MetaKeywords { get; set; }

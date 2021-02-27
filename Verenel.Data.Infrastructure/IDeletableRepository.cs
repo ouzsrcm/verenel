@@ -1,8 +1,13 @@
-﻿using Verenel.Models.Infrastructure;
+﻿using Verenel.Data.Infrastructure.Dependency;
+using Verenel.Models.Derived.Entities;
 
 namespace Verenel.Data.Infrastructure
 {
-    public interface IDeletableRepository<TEntity, TKey> where TEntity: class, IRepository<TEntity, TKey>,IModel<TKey>
+    public interface IDeletableRepository<TEntity, TKey> : 
+        IRepository<TEntity, TKey> where TEntity : class, 
+        IEntityModel<TKey>,
+        IScopedDependency,
+        ITransactionDependency
     {
         bool Delete(TEntity model);
     }

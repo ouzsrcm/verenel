@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using Verenel.Models.Infrastructure;
+using Verenel.Data.Infrastructure.Dependency;
+using Verenel.Models.Derived.Entities;
 
 namespace Verenel.Data.Infrastructure
 {
-    public interface ISelectableRepository<TEntity, TKey> where TEntity : class, IRepository<TEntity, TKey>, IModel<TKey>
+    public interface ISelectableRepository<TEntity, TKey> :
+        IRepository<TEntity, TKey> where TEntity : class,
+        IEntityModel<TKey>,
+        IScopedDependency,
+        ITransactionDependency
     {
         IQueryable<TEntity> GetList();
         IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>> model);

@@ -2,7 +2,7 @@
 
 namespace Verenel.Models.Derived.Entities.RecordStructure
 {
-    public class Site<TKey> : BaseModel<TKey>, IModel<TKey>
+    public class Site<TKey> : BaseModel<TKey>, IEntityModel<TKey>
     {
         public string BaseUrl { get; set; }
         public string HttpUrl { get; set; }

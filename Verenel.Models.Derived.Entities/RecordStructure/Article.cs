@@ -3,7 +3,7 @@ using Verenel.Models.Infrastructure;
 
 namespace Verenel.Models.Derived.Entities.RecordStructure
 {
-    public class Article<TKey> : BaseModel<TKey>, IModel<TKey>
+    public class Article<TKey> : BaseModel<TKey>, IEntityModel<TKey>
     {
         public string Title { get; set; }
         public TKey CategoryId { get; set; }
